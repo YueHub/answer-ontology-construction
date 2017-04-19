@@ -23,8 +23,8 @@ public class OntologyConstructionLauncher {
 			// http://baike.baidu.com/subview/9514/15201085.htm
 			// 美人鱼音乐：http://baike.baidu.com/subview/9514/13552337.htm
 			// 美人鱼人鱼生物：http://baike.baidu.com/subview/9514/5250032.htm
-			//.addUrl("http://baike.baidu.com/view/23083.htm")
-			.addUrl("http://baike.baidu.com/view/" + count)
+			.addUrl("http://baike.baidu.com/view/23083.htm")
+			//.addUrl("http://baike.baidu.com/view/" + count)
 			.addPipeline(constructionPipeline)
 			//开启5个线程抓取
 			.thread(1)

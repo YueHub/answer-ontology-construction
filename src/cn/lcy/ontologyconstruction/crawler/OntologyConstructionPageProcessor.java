@@ -68,14 +68,15 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
         }
         
         // 按照自增长抓取百科页面
+        /*
         ++OntologyConstructionLauncher.count;
         page.addTargetRequest("http://baike.baidu.com/view/" + OntologyConstructionLauncher.count);
         if(OntologyConstructionLauncher.count % 50 == 0) {
         	System.out.println("已经爬取百科页面数量:" + OntologyConstructionLauncher.count);
         }
+        */
         
-        
-       /*if(OntologyConstructionLauncher.count < 10) {
+       if(OntologyConstructionLauncher.count < 10) {
             page.addTargetRequests(page.getHtml().links().regex("http://baike\\.baidu\\.com/.*").all());
             ++OntologyConstructionLauncher.count;
         }
@@ -96,7 +97,7 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
         page.addTargetRequest("http://baike.baidu.com/view/30969.htm"); // 尾田荣一郎
         page.addTargetRequest("http://baike.baidu.com/subview/9514/13552337.htm"); // 美人鱼歌曲
         page.addTargetRequest("http://baike.baidu.com/view/7599.htm"); // 温州市
-*/    }
+    }
 
     @Override
     public Site getSite() {
