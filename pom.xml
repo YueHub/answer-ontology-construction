@@ -3,53 +3,25 @@
   	<groupId>cn.lcy</groupId>
   	<artifactId>ontology-construction</artifactId>
   	<version>0.0.1</version>
-  
+	<build>
+	  <sourceDirectory>src</sourceDirectory>
+	  <plugins>
+	    <plugin>
+	      <artifactId>maven-compiler-plugin</artifactId>
+	      <version>3.5.1</version>
+	      <configuration>
+	        <source>1.8</source>
+	        <target>1.8</target>
+	      </configuration>
+	    </plugin>
+	  </plugins>
+	</build>
 	<developers>
         <developer>
             <name>yue</name>
             <email>2225300619@qq.com</email>
         </developer>
     </developers>
-  
-   	<build>
- 	 	<plugins>
- 	 	
-	  		<plugin>
-	            <groupId>org.apache.maven.plugins</groupId>
-	            <artifactId>maven-dependency-plugin</artifactId>
-	            <executions>
-	                <execution>
-	                    <id>copy-dependencies</id>
-	                    <phase>prepare-package</phase>
-	                    <goals>
-	                        <goal>copy-dependencies</goal>
-	                    </goals>
-	                    <configuration>
-	                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
-	                        <overWriteReleases>false</overWriteReleases>
-	                        <overWriteSnapshots>false</overWriteSnapshots>
-	                        <overWriteIfNewer>true</overWriteIfNewer>
-	                    </configuration>
-	                </execution>
-	            </executions>
-	        </plugin>
-	        <plugin>
-	            <groupId>org.apache.maven.plugins</groupId>
-	            <artifactId>maven-jar-plugin</artifactId>
-	            <configuration>
-	            	<failOnMissingWebXml>false</failOnMissingWebXml>
-	                <archive>
-	                    <manifest>
-	                        <addClasspath>true</addClasspath>
-	                        <classpathPrefix>lib/</classpathPrefix>
-	                        <mainClass>theMainClass</mainClass>
-	                    </manifest>
-	                </archive>
-	            </configuration>
-	        </plugin>
-	        
-		</plugins>
-  	</build>
   
   	<dependencies>
   
