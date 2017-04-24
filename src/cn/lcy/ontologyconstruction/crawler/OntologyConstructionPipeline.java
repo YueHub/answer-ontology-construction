@@ -2,6 +2,7 @@ package cn.lcy.ontologyconstruction.crawler;
 
 import java.util.List;
 
+import cn.lcy.ontologyconstruction.config.Config;
 import cn.lcy.ontologyconstruction.enums.OntologyClassEnum;
 import cn.lcy.ontologyconstruction.model.BaikePage;
 import cn.lcy.ontologyconstruction.service.ConstructionServiceI;
@@ -83,5 +84,15 @@ public class OntologyConstructionPipeline implements Pipeline {
 			e.printStackTrace();
 		}
 		
+		++OntologyConstructionLauncher.pageCount;
+		
+		if(OntologyConstructionLauncher.pageCount % 10 == 0) {
+    	   System.out.println("已经处理:" + OntologyConstructionLauncher.pageCount + "个页面");
+		}
+       
+		if(OntologyConstructionLauncher.pageCount == Config.pageNum) {
+    	   System.out.println("处理完成:总处理" + OntologyConstructionLauncher.pageCount + "个页面");
+    	   System.exit(0);
+		}
 	}
 }

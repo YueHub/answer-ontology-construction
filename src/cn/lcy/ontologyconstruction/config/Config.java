@@ -43,6 +43,11 @@ public class Config {
 	public static String picSavePath;
 	
 	/**
+	 * 要抓取的页面数量
+	 */
+	public static Long pageNum;
+	
+	/**
 	 * 读取配置
 	 */
 	static {
@@ -57,6 +62,8 @@ public class Config {
 		ontologyPath = rootPath + properties.get("ontologyPath").toString();
 		individualDictPath = rootPath + properties.get("individualDictPath").toString();
 		picSavePath = rootPath + properties.getProperty("picSavePath");
+		
+		pageNum = Long.parseLong(properties.getProperty("pageNum"));
 	}
 	
 	/**

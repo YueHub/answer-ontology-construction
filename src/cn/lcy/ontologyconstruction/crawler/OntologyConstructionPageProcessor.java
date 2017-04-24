@@ -2,6 +2,7 @@ package cn.lcy.ontologyconstruction.crawler;
 
 import java.util.List;
 
+import cn.lcy.ontologyconstruction.config.Config;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -10,7 +11,6 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
   
-    
     @Override
     // process是定制爬虫逻辑的核心接口，在这里编写抽取逻辑
     public void process(Page page) {
@@ -20,8 +20,6 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
     		picSrc = page.getHtml().xpath("//dl[@class='lemmaWgt-albumList-poster']//img/@src").toString();
     	// 词条图片
     	page.putField("picSrc", picSrc);
-    	
-    	
     	
     	// 内容一：词条标题
     	String lemmaTitle = page.getHtml().xpath("//dd[@class='lemmaWgt-lemmaTitle-title']/h1/allText()").toString();
@@ -75,28 +73,27 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
         	System.out.println("已经爬取百科页面数量:" + OntologyConstructionLauncher.count);
         }
         */
-        
-       if(OntologyConstructionLauncher.count < 10) {
-            page.addTargetRequests(page.getHtml().links().regex("http://baike\\.baidu\\.com/.*").all());
-            ++OntologyConstructionLauncher.count;
-        }
-       	page.addTargetRequest("http://baike.baidu.com/subview/2321/5786291.htm"); // 火影忍者
-        page.addTargetRequest("http://baike.baidu.com/subview/8980/5236815.htm"); // 死神
-        page.addTargetRequest("http://baike.baidu.com/subview/9514/15201085.htm"); // 美人鱼
-        page.addTargetRequest(" http://baike.baidu.com/subview/82349/6500980.htm"); // 喜剧之王
+       if(Config.pageNum == null) {
+    	   Config.pageNum = 10L;	// 默认处理10个页面
+       } else if(OntologyConstructionLauncher.pageCount < Config.pageNum) {
+    	   page.addTargetRequests(page.getHtml().links().regex("http://baike\\.baidu\\.com/.*").all());
+       }
        
-        page.addTargetRequest("http://baike.baidu.com/subview/12085227/12482265.htm"); // 美国队长3
-        page.addTargetRequest("http://baike.baidu.com/view/5081.htm");	// 周星驰
-        //page.addTargetRequest("http://baike.baidu.com/view/2632.htm");	// 周杰伦
-        page.addTargetRequest("http://baike.baidu.com/view/27362.htm");	// 习近平
-        page.addTargetRequest("http://baike.baidu.com/view/1471.htm");	// 北京大学
-        page.addTargetRequest("http://baike.baidu.com/view/1247049.htm");	// 阿里巴巴集团
-        page.addTargetRequest("http://baike.baidu.com/view/1269423.htm");	// 亚信科技
-        page.addTargetRequest("http://baike.baidu.com/view/1591.htm");	// 腾讯
-        page.addTargetRequest("http://baike.baidu.com/subview/61891/14022133.htm"); // 中国
-        page.addTargetRequest("http://baike.baidu.com/view/30969.htm"); // 尾田荣一郎
-        page.addTargetRequest("http://baike.baidu.com/subview/9514/13552337.htm"); // 美人鱼歌曲
-        page.addTargetRequest("http://baike.baidu.com/view/7599.htm"); // 温州市
+       page.addTargetRequest("http://baike.baidu.com/subview/2321/5786291.htm"); // 火影忍者
+       page.addTargetRequest("http://baike.baidu.com/subview/8980/5236815.htm"); // 死神
+       page.addTargetRequest("http://baike.baidu.com/subview/9514/15201085.htm"); // 美人鱼
+       page.addTargetRequest(" http://baike.baidu.com/subview/82349/6500980.htm"); // 喜剧之王
+       page.addTargetRequest("http://baike.baidu.com/subview/12085227/12482265.htm"); // 美国队长3
+       page.addTargetRequest("http://baike.baidu.com/view/2632.htm");	// 周杰伦
+       page.addTargetRequest("http://baike.baidu.com/view/27362.htm");	// 习近平
+       page.addTargetRequest("http://baike.baidu.com/view/1471.htm");	// 北京大学
+       page.addTargetRequest("http://baike.baidu.com/view/1247049.htm");	// 阿里巴巴集团
+       page.addTargetRequest("http://baike.baidu.com/view/1269423.htm");	// 亚信科技
+       page.addTargetRequest("http://baike.baidu.com/view/1591.htm");	// 腾讯
+       page.addTargetRequest("http://baike.baidu.com/subview/61891/14022133.htm"); // 中国
+       page.addTargetRequest("http://baike.baidu.com/view/30969.htm"); // 尾田荣一郎
+       page.addTargetRequest("http://baike.baidu.com/subview/9514/13552337.htm"); // 美人鱼歌曲
+       page.addTargetRequest("http://baike.baidu.com/view/7599.htm"); // 温州市
     }
 
     @Override

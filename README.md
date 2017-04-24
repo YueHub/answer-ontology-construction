@@ -3,7 +3,11 @@
 八大一级类，剩下的数据归到其它这一类中．
 
 ## 使用
-首先需要将项目docs下的Answer_Ontology_Origin.owl文件拷贝到本地磁盘中，并在ontology-construction.properties中设置本地路径．
+* 在本地磁盘中创建一个目录用做放置项目所需的各类文件的根目录.
+* 在根目录下创建Ontologies目录，将项目docs下的Answer_Ontology_Origin.owl文件，拷贝到Ontologies.
+* 创建AnswerDict目录，并在该目录下新建一个空白文件Answer_Dict_Test.txt.
+* 将docs下的Answer_Test目录拷贝到根目录下.
+
 ### 配置文件
 在ontology-construction.properties中进行本体保存路径等相关修改，相关设置如下：
 ```
@@ -17,6 +21,8 @@ ontologyPath=Ontologies/Answer_Ontology_Origin.owl
 individualDictPath=AnswerDict/Answer_Dict_Test.txt
 \# 图片保存地址
 picSavePath=Images_Test
+\# 要抓取的页面数量
+pageNum=20
 ```
 ### 运行
 

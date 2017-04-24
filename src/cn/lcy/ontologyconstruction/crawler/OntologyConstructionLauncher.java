@@ -4,16 +4,12 @@ import us.codecraft.webmagic.Spider;
 
 public class OntologyConstructionLauncher {
 	
-	public static int count = 0;
+	public static Long pageCount = 0L;
 	
 	public static void main(String args[]) {
 		OntologyConstructionPageProcessor constructionPageProcessor = new OntologyConstructionPageProcessor();
 		OntologyConstructionPipeline constructionPipeline = new OntologyConstructionPipeline();
-		// 设置代理
-		/*HttpHost httpProxy = new HttpHost("proxy.asiainfo.com",8080);
-		constructionPageProcessor.getSite().setHttpProxy(httpProxy);*/
 		Spider.create(constructionPageProcessor)
-			//从"https://github.com/code4craft"开始抓
 			// 周星驰：http://baike.baidu.com/view/5081.htm
 			// 周杰伦：http://baike.baidu.com/view/2632.htm
 			// 昆凌：http://baike.baidu.com/item/%E6%98%86%E5%87%8C/1545451
@@ -23,7 +19,7 @@ public class OntologyConstructionLauncher {
 			// http://baike.baidu.com/subview/9514/15201085.htm
 			// 美人鱼音乐：http://baike.baidu.com/subview/9514/13552337.htm
 			// 美人鱼人鱼生物：http://baike.baidu.com/subview/9514/5250032.htm
-			.addUrl("http://baike.baidu.com/view/23083.htm")
+			.addUrl("http://baike.baidu.com/view/5081.htm")
 			//.addUrl("http://baike.baidu.com/view/" + count)
 			.addPipeline(constructionPipeline)
 			//开启5个线程抓取
