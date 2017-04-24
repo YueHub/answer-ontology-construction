@@ -25,6 +25,7 @@ picSavePath=Images_Test
 pageNum=20
 ```
 ### 运行
-
+cn.lcy.ontologyconstruction.crawler下的OntologyConstructionLauncher为程序入口
 ## 原理
 ![image](https://github.com/YueHub/answer-ontology-construction/blob/master/docs/本体构建模块框架图.png)
+待续...
