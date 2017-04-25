@@ -70,8 +70,4 @@ public class Config {
 	 * 配置类 不需要生成实例
 	 */
 	private Config() {}
-	
-	
-	
-
 }

@@ -86,11 +86,11 @@ public class OntologyConstructionPipeline implements Pipeline {
 		
 		++OntologyConstructionLauncher.pageCount;
 		
-		if(OntologyConstructionLauncher.pageCount % 10 == 0) {
+		if (OntologyConstructionLauncher.pageCount % 10 == 0) {
     	   System.out.println("已经处理:" + OntologyConstructionLauncher.pageCount + "个页面");
 		}
        
-		if(OntologyConstructionLauncher.pageCount == Config.pageNum) {
+		if (OntologyConstructionLauncher.pageCount == Config.pageNum) {
     	   System.out.println("处理完成:总处理" + OntologyConstructionLauncher.pageCount + "个页面");
     	   System.exit(0);
 		}

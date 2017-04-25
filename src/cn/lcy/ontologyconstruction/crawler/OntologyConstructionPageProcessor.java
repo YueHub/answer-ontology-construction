@@ -16,8 +16,9 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
     public void process(Page page) {
     	// 词条图片
     	String picSrc = page.getHtml().xpath("//div[@class='summary-pic']//img/@src").toString();
-    	if(picSrc == null) 
+    	if (picSrc == null) {
     		picSrc = page.getHtml().xpath("//dl[@class='lemmaWgt-albumList-poster']//img/@src").toString();
+    	}
     	// 词条图片
     	page.putField("picSrc", picSrc);
     	
@@ -61,7 +62,7 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
             page.setSkip(true);
         }
         
-        if(page.getResultItems().getRequest().getUrl().split("#").length >= 2) {
+        if (page.getResultItems().getRequest().getUrl().split("#").length >= 2) {
         	page.setSkip(true);
         }
         
@@ -73,9 +74,9 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
         	System.out.println("已经爬取百科页面数量:" + OntologyConstructionLauncher.count);
         }
         */
-       if(Config.pageNum == null) {
+       if (Config.pageNum == null) {
     	   Config.pageNum = 10L;	// 默认处理10个页面
-       } else if(OntologyConstructionLauncher.pageCount < Config.pageNum) {
+       } else if (OntologyConstructionLauncher.pageCount < Config.pageNum) {
     	   page.addTargetRequests(page.getHtml().links().regex("http://baike\\.baidu\\.com/.*").all());
        }
        

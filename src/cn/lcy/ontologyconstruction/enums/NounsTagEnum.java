@@ -18,8 +18,8 @@ public enum NounsTagEnum {
 	 * @return
 	 */
 	public static boolean isIncludeEnumElement(String element) {
-		for(Enum<?> ele : NounsTagEnum.values()) {
-			if(ele.toString() == element) {
+		for (Enum<?> ele : NounsTagEnum.values()) {
+			if (ele.toString() == element) {
 				return true;
 			}
 		}

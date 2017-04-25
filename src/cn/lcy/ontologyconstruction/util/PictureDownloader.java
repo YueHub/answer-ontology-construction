@@ -30,7 +30,7 @@ public class PictureDownloader {
         int len;  
         // 输出的文件流  
        File sf = new File(savePath);
-       if(!sf.exists()){  
+       if (!sf.exists()){  
            sf.mkdirs();  
        }  
        OutputStream os = new FileOutputStream(sf.getPath()+ File.separator +filename);  

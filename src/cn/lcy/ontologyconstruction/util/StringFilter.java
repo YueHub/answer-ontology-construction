@@ -23,7 +23,7 @@ public class StringFilter {
 	 */
 	public static List<String> spaceFilter(List<String> strs) {
 		List<String> strsFilter = new ArrayList<String>();
-		for(String str : strs) {
+		for (String str : strs) {
 			String strFilter = StringFilter.spaceFilter(str);
 			strsFilter.add(strFilter);
 		}
@@ -37,7 +37,7 @@ public class StringFilter {
 	 * @return
 	 */
 	public static String nonBreakingSpaceFilter(String str) {
-		if(str == null) {
+		if (str == null) {
 			return str;
 		}
 		// 不间断空格
@@ -45,7 +45,7 @@ public class StringFilter {
         int position = 0;
         char currentChar;
         
-        while(position < str.length()){
+        while (position < str.length()){
         	currentChar = str.charAt(position++);
         	if(currentChar != (char)160)
         		buffer.append(currentChar); 
@@ -59,11 +59,11 @@ public class StringFilter {
 	 * @return
 	 */
 	public static List<String> nonBreakingSpaceFilter(List<String> strs) {
-		if(strs == null) {
+		if (strs == null) {
 			return strs;
 		}
 		List<String> strsFilter = new ArrayList<String>();
-		for(String strFilter : strs) {
+		for (String strFilter : strs) {
 			strsFilter.add(StringFilter.nonBreakingSpaceFilter(strFilter));
 		}
 		return strsFilter;
@@ -79,22 +79,22 @@ public class StringFilter {
 	public static List<String> parameterValueSeparates(String parameterValue) {
 		List<String> valueList = new ArrayList<String>();
 		valueList = Arrays.asList(parameterValue.split("、"));
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = Arrays.asList(parameterValue.split("，"));
 		}
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = Arrays.asList(parameterValue.split("；"));
 		}
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = Arrays.asList(parameterValue.split("/"));
 		}
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = Arrays.asList(parameterValue.split(","));
 		}
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = Arrays.asList(parameterValue.split("："));
 		}
-		if(valueList.size() == 1) {
+		if (valueList.size() == 1) {
 			valueList = new ArrayList<String>();
 			valueList.add(parameterValue);
 		}
@@ -109,7 +109,7 @@ public class StringFilter {
 	 * @return
 	 */
 	public static String specialCharacterFilter(String str) {
-		if(str == null) {
+		if (str == null) {
 			return str;
 		}
 		// 不间断空格
@@ -117,9 +117,9 @@ public class StringFilter {
         int position = 0;
         char currentChar;
         
-        while(position < str.length()){
+        while (position < str.length()){
         	currentChar = str.charAt(position++);
-        	if(currentChar != '：' && currentChar != ':' && currentChar != '(' && currentChar != '（' && currentChar != ')' && currentChar != '）')
+        	if (currentChar != '：' && currentChar != ':' && currentChar != '(' && currentChar != '（' && currentChar != ')' && currentChar != '）')
         		buffer.append(currentChar); 
         }
         return buffer.toString();
@@ -132,7 +132,7 @@ public class StringFilter {
 	 */
 	public static List<String> parameterNameFilter(List<String> parameterNames) {
 		List<String> parameterNameFilters = new ArrayList<String>();
-		for(String parameterName : parameterNames) {
+		for (String parameterName : parameterNames) {
 			String filterName = StringFilter.specialCharacterFilter(parameterName);
 			try {
 				parameterNameFilters.add(filterName);
@@ -142,6 +142,4 @@ public class StringFilter {
 		}
 		return parameterNameFilters;
 	}
-	
-	
 }

@@ -40,11 +40,11 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 		// 添加数据属性（描述和歧义说明）
 		String lemmaSummary =  baikePage.getLemmaSummary();
 		String picSrc = baikePage.getPicSrc();
-		if(picSrc != null) {
+		if (picSrc != null) {
 			// 取得当前时间
 			long times = System.currentTimeMillis();
 			// 生成0-1000的随机数
-			int random = (int)(Math.random() * 1000);
+			int random = (int) (Math.random() * 1000);
 			// 扩展名称
 			String newPicName = times + "" + random  + ".jpg";
 			PictureDownloader.picDownload(picSrc, newPicName, Config.picSavePath + File.separator + OntologyClassEnum.ANIMATION.getName() );
@@ -81,7 +81,7 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 		Individual movieIndividual = null;
 		Long rowNum = 0l;
 		// 遍历词典中的实体记录 判断当前实体是否已经存在
-		for(String row : dictIndividualList) {
+		for (String row : dictIndividualList) {
 			++rowNum;
 			String[] fieldsDict = row.split("_");
 			String dictIndividualUUID = fieldsDict[0]; // UUID
@@ -92,13 +92,13 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 			int dictIndividualClass = Integer.parseInt(fieldsDict[5]);	// 实体所属类型
 			// 如果词典中歧义理解字段为待更新
 			// 第一种情况：如果找到实体名相同并且明确指出该实体没有歧义则   该实体就是当前迭代到的实体
-			if(individualName.equals(dictIndividualName) && dictPolysemantExplain.equals("无")) {
+			if (individualName.equals(dictIndividualName) && dictPolysemantExplain.equals("无")) {
 				movieIndividual = constructionDAO.getIndividual(dictIndividualUUID);
 				// 找到完全相同的实体了 使用#去除所有框架定位网页
-			} else if(individualName.equals(dictIndividualName) && url.split("#")[0].equals(dictIndividualURL) && dictIndividualClass == parentClass.getIndex()) {
+			} else if (individualName.equals(dictIndividualName) && url.split("#")[0].equals(dictIndividualURL) && dictIndividualClass == parentClass.getIndex()) {
 				// 如果此时抓到的实体歧义不为空 则表示该实体有同名实体 则更新词典 TODO 应该把 != null 去掉
-				if(dictPolysemantExplain.equals("待更新")) {
-					if(polysemantExplain == null) {
+				if (dictPolysemantExplain.equals("待更新")) {
+					if (polysemantExplain == null) {
 						polysemantExplain = "无";
 					}
 					// 更新词典 修改歧义说明字段
@@ -112,15 +112,15 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 		}
 		
 		// 如果词典中不存在该实体，则插入词典并且创建一个实体
-		if(movieIndividual == null) {
+		if (movieIndividual == null) {
 			String movieIndividualUUID = UUID.randomUUID().toString().replace("-", "");
 			String isAliasesWrite = null;
-			if(isAliases == true) {
+			if (isAliases == true) {
 				isAliasesWrite = "1";
 			} else {
 				isAliasesWrite = "0";
 			}
-			if(polysemantExplain == null) {
+			if (polysemantExplain == null) {
 				polysemantExplain = "无";
 			}
 			String row_add_individual = movieIndividualUUID + "_" + individualName + "_" + polysemantExplain + "_" + url.split("#")[0] + "_" + isAliasesWrite + "_" + parentClass.getIndex();
@@ -135,44 +135,44 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 	public boolean dealCompanys(Individual animationIndividual, BaikePage baikePage) {
 		List<String> companys = new ArrayList<String>();
 		int index = 0;
-		for(String parameterName : baikePage.getParameterNames()) {
-			if(parameterName.equals("动画制作")) {
+		for (String parameterName : baikePage.getParameterNames()) {
+			if (parameterName.equals("动画制作")) {
 				companys = Arrays.asList(baikePage.getParameterValues().get(index).split("、"));
-				if(companys.size() == 1) {
+				if (companys.size() == 1) {
 					companys = Arrays.asList(baikePage.getParameterValues().get(index).split("，"));
 				}
-				for(String company : companys) {
+				for (String company : companys) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(company.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (company.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual companyIndividual = this.queryIndividual(company, polysemantExplain, url, true, OntologyClassEnum.COMPANY);
 						constructionDAO.addObjectProperty(companyIndividual, "制作", animationIndividual);
 					}
 				}
 			}
-			if(parameterName.equals("制片")) {
+			if (parameterName.equals("制片")) {
 				companys = Arrays.asList(baikePage.getParameterValues().get(index).split("、"));
-				if(companys.size() == 1) {
+				if (companys.size() == 1) {
 					companys = Arrays.asList(baikePage.getParameterValues().get(index).split("，"));
 				}
-				for(String company : companys) {
+				for (String company : companys) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(company.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (company.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual companyIndividual = this.queryIndividual(company, polysemantExplain, url, true, OntologyClassEnum.COMPANY);
 						constructionDAO.addObjectProperty(companyIndividual, "制片", animationIndividual);
@@ -188,22 +188,22 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 	public boolean dealAreas(Individual animationIndividual, BaikePage baikePage) {
 		List<String> areas = new ArrayList<String>();
 		int index = 0;
-		for(String parameterName : baikePage.getParameterNames()) {
-			if(parameterName.equals("地区")) {
+		for (String parameterName : baikePage.getParameterNames()) {
+			if (parameterName.equals("地区")) {
 				areas = Arrays.asList(baikePage.getParameterValues().get(index).split("、"));
-				if(areas.size() == 1) {
+				if (areas.size() == 1) {
 					areas = Arrays.asList(baikePage.getParameterValues().get(index).split("，"));
 				}
-				for(String area : areas) {
+				for (String area : areas) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(area.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (area.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual areaIndividual = this.queryIndividual(area, polysemantExplain, url, true, OntologyClassEnum.AREA);
 						constructionDAO.addObjectProperty(animationIndividual, "属于", areaIndividual);
@@ -212,7 +212,7 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					// 创建二级类
 					OntClass areaClass = constructionDAO.getOntClass(area);
 					// 如果本体中此时没有该二级类
-					if(areaClass == null) {
+					if (areaClass == null) {
 						areaClass = constructionDAO.createOntClass(area);
 					}
 					// 获取一级类 动画类
@@ -230,23 +230,23 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 	public boolean dealCharacters(Individual animationIndividual, BaikePage baikePage) {
 		List<String> characters = new ArrayList<String>();
 		int index = 0;
-		for(String parameterName : baikePage.getParameterNames()) {
-			if(parameterName.equals("原作")) {
+		for (String parameterName : baikePage.getParameterNames()) {
+			if (parameterName.equals("原作")) {
 				characters = Arrays.asList(baikePage.getParameterValues().get(index).split("、"));
-				if(characters.size() == 1) {
+				if (characters.size() == 1) {
 					characters = Arrays.asList(baikePage.getParameterValues().get(index).split("，"));
 				}
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "创作", animationIndividual);
@@ -255,19 +255,19 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					}
 				}
 			}
-			if(parameterName.equals("导演")) {
+			if (parameterName.equals("导演")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "导演", animationIndividual);
@@ -276,38 +276,38 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					}
 				}
 			}
-			if(parameterName.equals("剧本")) {
+			if (parameterName.equals("剧本")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "写剧本", animationIndividual);
 					}
 				}
 			}
-			if(parameterName.equals("角色设计")) {
+			if (parameterName.equals("角色设计")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "设计角色", animationIndividual);
@@ -315,19 +315,19 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					}
 				}
 			}
-			if(parameterName.equals("作画监督")) {
+			if (parameterName.equals("作画监督")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "监督作画", animationIndividual);
@@ -335,19 +335,19 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					}
 				}
 			}
-			if(parameterName.equals("音乐")) {
+			if (parameterName.equals("音乐")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "创作音乐", animationIndividual);
@@ -355,19 +355,19 @@ public class AnimationConstructionServiceImpl implements ConstructionServiceI {
 					}
 				}
 			}
-			if(parameterName.equals("主要配音")) {
+			if (parameterName.equals("主要配音")) {
 				characters = StringFilter.parameterValueSeparates(baikePage.getParameterValues().get(index));
-				for(String character : characters) {
+				for (String character : characters) {
 					String url = null;
 					int i = 0;
-					for(String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
-						if(character.equals(parameterHasUrlValue)) {
+					for (String parameterHasUrlValue : baikePage.getParameterHasUrlValues()) {
+						if (character.equals(parameterHasUrlValue)) {
 							url = baikePage.getParameterHasUrl().get(i);
 						}
 						++i;
 					}
 					
-					if(url != null) {
+					if (url != null) {
 						String polysemantExplain = "待更新";
 						Individual characterIndividual = this.queryIndividual(character, polysemantExplain, url, true, OntologyClassEnum.CHARACTER);
 						constructionDAO.addObjectProperty(characterIndividual, "配音", animationIndividual);

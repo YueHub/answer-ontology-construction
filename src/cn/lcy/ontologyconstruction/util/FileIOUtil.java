@@ -36,7 +36,7 @@ public class FileIOUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if(randomFile != null) {
+			if (randomFile != null) {
 				try {
 					randomFile.close();
 				} catch(IOException e) {
@@ -65,7 +65,7 @@ public class FileIOUtil {
 	        // 将写文件指针移到文件尾
 	        randomFile.seek(fileLength);
 	        // 追加内容
-	        for(String appendContent : appendContents) {
+	        for (String appendContent : appendContents) {
 	        	System.out.println("appendContent"+appendContent);
 	        	String content = new String(appendContent.getBytes("UTF-8"),"ISO8859_1");
 	        	randomFile.writeBytes(content);
@@ -75,7 +75,7 @@ public class FileIOUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if(randomFile != null) {
+			if (randomFile != null) {
 				try {
 					randomFile.close();
 				} catch(IOException e) {
@@ -97,13 +97,13 @@ public class FileIOUtil {
             BufferedReader in = new BufferedReader(fileReader);
             FileWriter fileWriter = new FileWriter(filePath + ".temp");//缓存文件
             PrintWriter pw = new PrintWriter(fileWriter);
-            while((row = in.readLine()) != null){
+            while ((row = in.readLine()) != null){
                 count++;
-                if(count == rowNum){
+                if (count == rowNum){
                 	row = rowUpdate;
                     pw.println(row);
                     pw.flush();
-                }else{
+                } else {
                     pw.println(row);
                     pw.flush();
                 }
@@ -116,7 +116,7 @@ public class FileIOUtil {
             BufferedReader i = new BufferedReader(f);
             FileWriter w = new FileWriter(filePath);
             PrintWriter p = new PrintWriter(w);
-            while((row = i.readLine()) != null){
+            while ((row = i.readLine()) != null){
                 p.println(row);
                 p.flush();
             }

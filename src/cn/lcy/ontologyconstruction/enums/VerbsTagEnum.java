@@ -17,8 +17,8 @@ public enum VerbsTagEnum {
 	 * @return
 	 */
 	public static boolean isIncludeEnumElement(String element) {
-		for(Enum<?> ele : VerbsTagEnum.values()) {
-			if(ele.toString() == element) {
+		for (Enum<?> ele : VerbsTagEnum.values()) {
+			if (ele.toString() == element) {
 				return true;
 			}
 		}

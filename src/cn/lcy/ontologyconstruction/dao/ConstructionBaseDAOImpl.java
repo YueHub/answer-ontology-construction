@@ -77,7 +77,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 			e.printStackTrace();
 			return false;
 		} finally {
-			if(fw != null) {
+			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
@@ -90,7 +90,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 	
 	@Override
 	public boolean addDataProperty(Individual individual, String propertyName, String propertyValue) {
-		if(propertyName == null || propertyValue == null) {
+		if (propertyName == null || propertyValue == null) {
 			return false;
 		}
 		DatatypeProperty property = model.createDatatypeProperty(Config.pizzaNs + "有" + propertyName);
@@ -105,7 +105,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 			e.printStackTrace();
 			return false;
 		} finally {
-			if(fw != null) {
+			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
@@ -119,10 +119,10 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 	
 	@Override
 	public boolean addDataProperties(Individual individual , List<String> propertyNames, List<String> propertyValues) {
-		if(propertyNames == null || propertyValues == null) {
+		if (propertyNames == null || propertyValues == null) {
 			return false;
 		}
-		for(int i = 0; i < propertyNames.size(); i++) {
+		for (int i = 0; i < propertyNames.size(); i++) {
 			DatatypeProperty property = model.createDatatypeProperty(Config.pizzaNs + "有" + propertyNames.get(i));
 			individual.addProperty(property, propertyValues.get(i));
 		}
@@ -137,7 +137,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 			e.printStackTrace();
 			return false;
 		} finally {
-			if(fw != null) {
+			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
@@ -151,7 +151,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 
 	@Override
 	public Resource addObjectProperty(Individual individualStart, String objectPropertyName, Individual individualEnd) {
-		if(individualStart == null || objectPropertyName == null || individualEnd == null) {
+		if (individualStart == null || objectPropertyName == null || individualEnd == null) {
 			return null;
 		}
 		ObjectProperty property = model.createObjectProperty(Config.pizzaNs + objectPropertyName);
@@ -166,7 +166,7 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if(fw != null) {
+			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
@@ -179,12 +179,12 @@ public class ConstructionBaseDAOImpl implements ConstructionBaseDAOI {
 
 	@Override
 	public List<Resource> addObjectProperties(Individual individualStart, List<String> objectPropertyNames, List<Individual> individualEnds) {
-		if(individualStart == null || objectPropertyNames == null || individualEnds == null) {
+		if (individualStart == null || objectPropertyNames == null || individualEnds == null) {
 			return null;
 		}
 		int index = 0;
 		List<Resource> resources = new ArrayList<Resource>();
-		for(Individual individualEnd : individualEnds) {
+		for (Individual individualEnd : individualEnds) {
 			ObjectProperty property = model.createObjectProperty(Config.pizzaNs + objectPropertyNames.get(index));
 			Resource resource = individualStart.addProperty(property, individualEnd);
 			resources.add(resource);
