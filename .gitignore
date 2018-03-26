@@ -3,3 +3,10 @@
 .classpath
 .project
 /target
+
+/docs/developDocs
+
+/.idea/workspace.xml
+/.idea/libraries
+/out
+answer-ontology-construction.iml
