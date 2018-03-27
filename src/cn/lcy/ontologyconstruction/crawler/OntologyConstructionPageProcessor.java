@@ -80,21 +80,7 @@ public class OntologyConstructionPageProcessor implements PageProcessor {
     	   page.addTargetRequests(page.getHtml().links().regex("http://baike\\.baidu\\.com/.*").all());
        }
        
-       page.addTargetRequest("http://baike.baidu.com/subview/2321/5786291.htm"); // 火影忍者
-       page.addTargetRequest("http://baike.baidu.com/subview/8980/5236815.htm"); // 死神
-       page.addTargetRequest("http://baike.baidu.com/subview/9514/15201085.htm"); // 美人鱼
-       page.addTargetRequest(" http://baike.baidu.com/subview/82349/6500980.htm"); // 喜剧之王
-       page.addTargetRequest("http://baike.baidu.com/subview/12085227/12482265.htm"); // 美国队长3
-       page.addTargetRequest("http://baike.baidu.com/view/2632.htm");	// 周杰伦
-       page.addTargetRequest("http://baike.baidu.com/view/27362.htm");	// 习近平
-       page.addTargetRequest("http://baike.baidu.com/view/1471.htm");	// 北京大学
-       page.addTargetRequest("http://baike.baidu.com/view/1247049.htm");	// 阿里巴巴集团
-       page.addTargetRequest("http://baike.baidu.com/view/1269423.htm");	// 亚信科技
-       page.addTargetRequest("http://baike.baidu.com/view/1591.htm");	// 腾讯
-       page.addTargetRequest("http://baike.baidu.com/subview/61891/14022133.htm"); // 中国
-       page.addTargetRequest("http://baike.baidu.com/view/30969.htm"); // 尾田荣一郎
-       page.addTargetRequest("http://baike.baidu.com/subview/9514/13552337.htm"); // 美人鱼歌曲
-       page.addTargetRequest("http://baike.baidu.com/view/7599.htm"); // 温州市
+       page.addTargetRequest("http://baike.baidu.com/item/火影忍者"); // 火影忍者
     }
 
     @Override
