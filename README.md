@@ -35,7 +35,6 @@ cn.lcy.ontologyconstruction.crawler 下的 OntologyConstructionLauncher 为程�
 
 <img src="https://github.com/YueHub/answer-ontology-construction/blob/master/docs/本体构建模块框架图.png" width="520px">
 
-
 [简书](https://www.jianshu.com/p/97445e45c0ae)
 
-[博客](https://yuehub.github.io/2018/03/21/2-Answer-Ontology-Construction(1)/)
+[博客](http://yuehub.gitee.io/categories/项目/Answer-语义搜索/)
