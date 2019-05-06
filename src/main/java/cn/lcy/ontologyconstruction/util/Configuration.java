@@ -15,14 +15,14 @@ public class Configuration {
 	}
 	
     public static Properties propertiesLoader(String fileName) throws IOException {
-        // 文件在class的根路径  
-        InputStream is = Configuration.class.getClassLoader().getResourceAsStream(fileName);  
+        // 文件在class的根路径
+        InputStream is = Configuration.class.getClassLoader().getResourceAsStream(fileName);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));  
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
         Properties props = new Properties();
-        
-        props.load(br);  
-        
+
+        props.load(br);
+
         return props;
     }
 }
