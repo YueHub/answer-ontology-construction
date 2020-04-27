@@ -18,7 +18,7 @@ public class OntologyConstructionLauncher {
                 .addUrl("https://baike.baidu.com/view/5081.htm")
                 .addPipeline(constructionPipeline)
                 //开启 1 个线程抓取
-                .thread(1)
+                .thread(5)
                 //启动爬虫
                 .run();
     }

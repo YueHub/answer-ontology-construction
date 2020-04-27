@@ -18,6 +18,7 @@ pizzaNs=http://www.semanticweb.org/narutoku/ontologies/2016/3/my-ontology#
 \# 本体文件保存路径 必须将初始 Answer_Ontology_Origin.owl 文件复制到指定路径
 ontologyPath=Ontologies/Answer_Ontology_Origin.owl
 
+
 \# 实体词典保存路径，程序可自动创建
 individualDictPath=AnswerDict/Answer_Dict_Test.txt
 
@@ -27,6 +28,7 @@ picSavePath=Images_Test
 \# 要抓取的页面数量
 pageNum=20
 ```
+其中初始 Answer_Ontology_Origin.owl 文件在项目 [docs](./docs) 目录下
 
 ## 运行
 cn.lcy.ontologyconstruction.crawler 下的 OntologyConstructionLauncher 为程序入口
